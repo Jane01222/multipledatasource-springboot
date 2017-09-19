@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 务必配置正确namespace 就是所映射的实体类 -->
+<mapper namespace="com.xuanwu.springboot.multidatasource.dao3.UserInfoDao3">
+
+	<resultMap type="com.xuanwu.springboot.multidatasource.domin.UserInfo" id="userinfoMap">
+		<result property="enterpriseid" column="enterpriseid"/>
+		<result property="usernumber" column="usernumber"/>
+		<result property="departmentid" column="departmentid"/>
+		<result property="workcode" column="workcode"/>
+		<result property="username" column="username"/>
+		<result property="idcard" column="idcard"/>
+		<result property="birthday" column="birthday"/>
+		<result property="address" column="address"/>
+		<result property="postcode" column="postcode"/>
+		<result property="mobilephone" column="mobilephone"/>
+		<result property="tel" column="tel"/>
+		<result property="email" column="email"/>
+		<result property="personality" column="personality"/>
+		<result property="logourl" column="logourl"/>
+		<result property="positionjob" column="positionjob"/>
+		<result property="workcompany" column="workcompany"/>
+		<result property="qq" column="qq"/>
+		<result property="sex" column="sex"/>
+		<result property="name_pinyin" column="name_pinyin"/>
+		<result property="managermanId" column="managermanId"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updateTime" column="updateTime"/>
+	</resultMap>
+	
+	<insert id="addUserInfo" parameterType="com.xuanwu.springboot.multidatasource.domin.UserInfo">
+		insert into com_t_userinfo (
+		enterpriseid,
+		usernumber,
+		departmentid,
+		workcode,
+		username,
+		createTime,
+		updateTime
+		)values(
+		#{enterpriseid},#{usernumber},#{departmentid},#{workcode},#{username},
+		#{createTime},#{updateTime}
+		) 
+	</insert>
+	
+	<select id="selectUserInfos" resultMap="userinfoMap">
+	 	select usernumber,username,enterpriseid,departmentid,workcode,createTime,updateTime from com_t_userinfo
+	</select>
+	
+	<select id="selectUserinfoCount" resultType="Integer">
+		select count(1) from com_t_userinfo
+	</select>
+	
+</mapper> 
